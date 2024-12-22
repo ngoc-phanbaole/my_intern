@@ -27,7 +27,7 @@ public class Permissions implements Serializable {
     private String permissionName;
 
     @ManyToMany(mappedBy = "permissions")
-    @JsonIgnoreProperties(value = { "permissions" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "permissions", "appusers" }, allowSetters = true)
     private Set<Roles> roles = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

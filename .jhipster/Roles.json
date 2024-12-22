@@ -23,6 +23,13 @@
       "ownerSide": true,
       "relationshipName": "permissions",
       "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "appUser",
+      "otherEntityRelationshipName": "roles",
+      "ownerSide": false,
+      "relationshipName": "appusers",
+      "relationshipType": "many-to-many"
     }
   ],
   "service": "serviceImpl"

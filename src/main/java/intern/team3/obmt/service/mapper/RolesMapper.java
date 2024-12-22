@@ -13,6 +13,11 @@ public interface RolesMapper extends EntityMapper<RolesDTO, Roles> {
     @Mapping(target = "permissions", source = "permissions", qualifiedByName = "idSet")
     RolesDTO toDto(Roles s);
 
+    @Named("idSet")
+    @BeanMapping(ignoreByDefault = true)
+    @Mapping(target = "id", source = "id")
+    Set<RolesDTO> toDtoIdSet(Set<Roles> roles);
+
     @Mapping(target = "removePermissions", ignore = true)
     Roles toEntity(RolesDTO rolesDTO);
 }

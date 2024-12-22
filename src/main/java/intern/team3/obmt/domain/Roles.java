@@ -35,6 +35,10 @@ public class Roles implements Serializable {
     @JsonIgnoreProperties(value = { "roles" }, allowSetters = true)
     private Set<Permissions> permissions = new HashSet<>();
 
+    @ManyToMany(mappedBy = "roles")
+    @JsonIgnoreProperties(value = { "roles" }, allowSetters = true)
+    private Set<AppUser> appusers = new HashSet<>();
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
@@ -85,6 +89,37 @@ public class Roles implements Serializable {
     public Roles removePermissions(Permissions permissions) {
         this.permissions.remove(permissions);
         permissions.getRoles().remove(this);
+        return this;
+    }
+
+    public Set<AppUser> getAppusers() {
+        return this.appusers;
+    }
+
+    public void setAppusers(Set<AppUser> appUsers) {
+        if (this.appusers != null) {
+            this.appusers.forEach(i -> i.removeRoles(this));
+        }
+        if (appUsers != null) {
+            appUsers.forEach(i -> i.addRoles(this));
+        }
+        this.appusers = appUsers;
+    }
+
+    public Roles appusers(Set<AppUser> appUsers) {
+        this.setAppusers(appUsers);
+        return this;
+    }
+
+    public Roles addAppusers(AppUser appUser) {
+        this.appusers.add(appUser);
+        appUser.getRoles().add(this);
+        return this;
+    }
+
+    public Roles removeAppusers(AppUser appUser) {
+        this.appusers.remove(appUser);
+        appUser.getRoles().remove(this);
         return this;
     }
 

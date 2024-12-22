@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IPermissions } from 'app/shared/model/permissions.model';
 import { getEntities as getPermissions } from 'app/entities/permissions/permissions.reducer';
+import { IAppUser } from 'app/shared/model/app-user.model';
+import { getEntities as getAppUsers } from 'app/entities/app-user/app-user.reducer';
 import { getEntity, updateEntity, createEntity, reset } from './roles.reducer';
 import { IRoles } from 'app/shared/model/roles.model';
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
@@ -18,6 +20,7 @@ export const RolesUpdate = (props: RouteComponentProps<{ id: string }>) => {
   const [isNew] = useState(!props.match.params || !props.match.params.id);
 
   const permissions = useAppSelector(state => state.permissions.entities);
+  const appUsers = useAppSelector(state => state.appUser.entities);
   const rolesEntity = useAppSelector(state => state.roles.entity);
   const loading = useAppSelector(state => state.roles.loading);
   const updating = useAppSelector(state => state.roles.updating);
@@ -34,6 +37,7 @@ export const RolesUpdate = (props: RouteComponentProps<{ id: string }>) => {
     }
 
     dispatch(getPermissions({}));
+    dispatch(getAppUsers({}));
   }, []);
 
   useEffect(() => {

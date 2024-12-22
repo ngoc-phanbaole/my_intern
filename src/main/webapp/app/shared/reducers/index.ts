@@ -14,6 +14,8 @@ import passwordReset from 'app/modules/account/password-reset/password-reset.red
 import roles from 'app/entities/roles/roles.reducer';
 // prettier-ignore
 import permissions from 'app/entities/permissions/permissions.reducer';
+// prettier-ignore
+import appUser from 'app/entities/app-user/app-user.reducer';
 /* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 const rootReducer = {
@@ -28,6 +30,7 @@ const rootReducer = {
   settings,
   roles,
   permissions,
+  appUser,
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
   loadingBar,
 };

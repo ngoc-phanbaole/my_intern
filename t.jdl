@@ -1,3 +1,28 @@
+enum Status {
+    ACTIVE,
+    INACTIVE,
+    SUSPENDED
+}
+
+entity AppUser {
+    username String required
+    password String required
+    email String required
+    phoneNumber String required
+    resetToken String
+    resetTokenCreatedAt Instant
+    otpCode String
+    otpCodeCreatedAt Instant
+    otpCodeExpiredAt Instant
+    otpVerified Boolean required
+    rememberToken String
+    remembered Boolean required
+    deviceInfo String
+    createdAt Instant required
+    updatedAt Instant required
+    status Status required
+}
+
 entity Roles {
     roleName String required
 }
@@ -8,6 +33,7 @@ entity Permissions {
 
 
 relationship ManyToMany {
+    AppUser{roles} to Roles{appusers}
     Roles{permissions} to Permissions{roles}
 }
 
