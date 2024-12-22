@@ -1,0 +1,22 @@
+entity Roles {
+    roleName String required
+}
+
+entity Permissions {
+    permissionName String required
+}
+
+
+relationship ManyToMany {
+    Roles{permissions} to Permissions{roles}
+}
+
+
+// Set pagination options
+paginate all with pagination
+
+// Use Data Transfert Objects (DTO)
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
