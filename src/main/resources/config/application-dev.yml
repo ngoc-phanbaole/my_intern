@@ -49,8 +49,8 @@ spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:postgresql://localhost:5432/obmt
-    username: obmt
-    password:
+    username: admin
+    password: password
     hikari:
       poolName: Hikari
       auto-commit: false
